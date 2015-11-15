@@ -4,6 +4,7 @@
 deploy_user: deploy
 app_name: default_app
 app_domain: default_app.dev
+app_dev: '1'
 
 base_dir: '/home/{{ deploy_user }}'
 app_dir: '{{ base_dir }}/{{ app_name }}'
