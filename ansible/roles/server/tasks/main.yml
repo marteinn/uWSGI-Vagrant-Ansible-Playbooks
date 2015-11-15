@@ -11,6 +11,7 @@
   with_items:
     - curl
     - wget
+    - fail2ban
     - python-software-properties
     - python-virtualenv
     - python-dev

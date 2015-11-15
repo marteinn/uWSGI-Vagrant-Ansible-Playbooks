@@ -1,4 +1,4 @@
-# Ansible playbooks for Vagrant+uWSGI
+# uWSGI+Vagrant - Ansible Playbooks
 
 This is a ansible package for wsgi applications that runs uWSGI and Nginx, based on Ubuntu 14.04. The playbook supports one or more applications (running uWSGI emperor mode). You can use this both locally using Vagrant or in production. It is currently HTTP only.
 
@@ -45,6 +45,7 @@ Both playbooks will automatically run when you run `vagrant up`, it uses the inv
 		app_dmain: musicapp.com.dev
 		
 		/Vagrantfile
+		
 		config.vm.synced_folder "/local-repro/src", "/home/vagrant/music_app/web"
 		config.vm.synced_folder "/local-repro", "/home/vagrant/music_app/app"
 		
@@ -97,20 +98,13 @@ You can also pass along app_name and app_domain in this command.
 
 
 
-## Playbooks
-
-This package includes two playbooks, one called webserver that handles the general setup, while webapp registers a new webapp on the server.
-
-#### webserver.yml
-Performs basic server configurations and installs required packages
-
-#### webapp.yml
-Creates a boilerplate web applications, along with database and Nginx/uWSGI configuration.
-
-
 ## Package details
 ### Nginx
 All applications are added in `sites-available` and `sites-enabled` uses proxy_pass and sockets to proxy wsgi.
+
+- `service nginx reload`
+- `service nginx start`
+- `service nginx stop`
 
 ### uWSGI (running in emperor mode)
 uWSGI are installed as a global python package and controlled through a upstart script called uwsgi.
@@ -145,7 +139,7 @@ When you add a webapp the following files/directories will be created:
     uwsgi_params        - uWSGI param config file
 ```
 
-A python module called wsgi.py will be automatically created.
+A python module called `wsgi.py` will be automatically created.
 
 
 ## Credits
