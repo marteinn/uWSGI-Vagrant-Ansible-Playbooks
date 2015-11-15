@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
   # Setup server
   config.vm.provision "webserver", type: "ansible" do |ansible|
     ansible.extra_vars = {
-        ansible_ssh_user: 'vagrant',
-        deploy_user: 'vagrant'
+      ansible_ssh_user: 'vagrant',
+      deploy_user: 'vagrant'
     }
     ansible.playbook = "ansible/webserver.yml"
   end
@@ -21,8 +21,8 @@ Vagrant.configure(2) do |config|
   # Create app
   config.vm.provision "webapp", type: "ansible" do |ansible|
     ansible_extra_vars = {
-        ansible_ssh_user: 'vagrant',
-        deploy_user: 'vagrant'
+      ansible_ssh_user: 'vagrant',
+      deploy_user: 'vagrant'
     }
 
     if ENV['APP_NAME']
