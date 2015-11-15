@@ -1,0 +1,6 @@
+---
+# vi: set sw=2 ts=2:
+
+- name: restart uwsgi
+  service: name=uwsgi enabled=yes state=restarted
+  sudo: yes

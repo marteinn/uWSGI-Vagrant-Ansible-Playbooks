@@ -1,0 +1,48 @@
+---
+# vi: set sw=2 ts=2:
+
+- name: Update apt
+  sudo: yes
+  apt: update_cache=yes
+
+- name: Install System Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - curl
+    - wget
+    - fail2ban
+    - python-software-properties
+    - python-virtualenv
+    - python-dev
+
+- name: Install Extra Packages
+  sudo: yes
+  apt: pkg={{ item }} state=latest
+  with_items: server.packages
+  when: server.packages is defined
+
+- name: Configure the timezone
+  sudo: yes
+  template: src=timezone.tpl dest=/etc/timezone
+
+- name: More Configure the timezone
+  sudo: yes
+  file: src=/usr/share/zoneinfo/{{server.timezone}} dest=/etc/localtime state=link force=yes backup=yes
+
+- name: Set default system language pack
+  shell: locale-gen {{ server.locale }}
+  sudo: yes
+
+- name: enable SSH in firewall
+  ufw: rule=allow port=22
+
+- name: enable HTTP connections for web server
+  ufw: rule=allow port=80
+
+- name: enable HTTPS connections for web server
+  ufw: rule=allow port=443
+
+- name: enable firewall
+  ufw: state=enabled
+
