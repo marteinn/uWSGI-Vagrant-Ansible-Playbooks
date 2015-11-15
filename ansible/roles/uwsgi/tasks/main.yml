@@ -1,0 +1,17 @@
+---
+# vi: set sw=2 ts=2:
+# Uwsgi related tasks (install uwsgi, setup path for vessals and sockets)
+
+- name: Install uwsgi with pip
+  pip: name=uwsgi
+  sudo: yes
+
+- name: Assures uwsgi sites dir exists
+  file: path=/etc/uwsgi/sites state=directory
+
+- name: Assures uwsgi socket dir exists
+  file: path=/var/uwsgi state=directory
+        owner={{ deploy_user }} group=www-data
+
+- name: Create wusgi Upstart script
+  template: src=uwsgi.conf.tpl dest=/etc/init/uwsgi.conf

@@ -1,0 +1,12 @@
+---
+# vi: set sw=2 ts=2:
+
+- hosts: all
+  sudo: true
+  vars_files:
+    - [ "vars/secrets.yml", "vars/all.yml" ]
+  roles:
+    - server
+    - nginx
+    - pgsql
+    - uwsgi

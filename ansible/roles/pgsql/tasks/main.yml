@@ -1,0 +1,9 @@
+---
+# vi: set sw=2 ts=2:
+
+- include: psql_install.yml
+  when: pgsql.postgis == 'false'
+
+- include: psqlgis_install.yml
+  when: pgsql.postgis == 'true'
+

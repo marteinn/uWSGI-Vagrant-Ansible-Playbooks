@@ -1,0 +1,24 @@
+---
+# vi: set sw=2 ts=2:
+
+deploy_user: deploy
+app_name: default_app
+app_domain: default_app.dev
+
+base_dir: '/home/{{ deploy_user }}'
+app_dir: '{{ base_dir }}/{{ app_name }}'
+web_dir: '{{ base_dir }}/{{ app_name }}/web'
+logs_dir: '{{ base_dir }}/{{ app_name }}/logs'
+venv_dir: '{{ base_dir }}/{{ app_name }}/venv'
+
+server:
+  timezone: UTC
+  locale: en_US.UTF-8
+  packages: [vim, git]
+
+pgsql:
+  postgis: 'true'
+  database: '{{ app_name }}_db'
+  user: user
+  password: password
+
