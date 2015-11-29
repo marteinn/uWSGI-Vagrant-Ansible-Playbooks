@@ -1,0 +1,5 @@
+# Initall server setup role
+- src: fretscha.first-five-minutes
+
+# Install python pillow dependency role
+- src: korzeniewskipl.pillow-prerequisites

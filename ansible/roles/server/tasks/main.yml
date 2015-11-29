@@ -1,49 +1,21 @@
 # vi: set sw=2 ts=2:
-# Perform initial server setup
+# Perform additional server setup
 ---
 
-- name: Server | Update apt
-  sudo: yes
-  apt: update_cache=yes
-
-- name: Server | Install System Packages
+- name: Server | apt | Install additional python packages
   sudo: yes
   apt: pkg={{ item }} state=latest
   with_items:
-    - curl
-    - wget
-    - fail2ban
     - python-software-properties
     - python-virtualenv
     - python-dev
 
-- name: Server | Install Extra Packages
-  sudo: yes
-  apt: pkg={{ item }} state=latest
-  with_items: server.packages
-  when: server.packages is defined
-
-- name: Server | Configure the timezone
-  sudo: yes
-  template: src=timezone.tpl dest=/etc/timezone
-
-- name: Server | More Configure the timezone
-  sudo: yes
-  file: src=/usr/share/zoneinfo/{{server.timezone}} dest=/etc/localtime state=link force=yes backup=yes
-
-- name: Server | Set default system language pack
-  sudo: yes
-  shell: locale-gen {{ server.locale }}
-
-- name: Server | Enable SSH in firewall
-  ufw: rule=allow port=22
-
-- name: Server | Enable HTTP connections for web server
+- name: Server | ufw | Enable HTTP connections for the web server
   ufw: rule=allow port=80
 
-- name: Server | Enable HTTPS connections for web server
+- name: Server | ufw | Enable HTTPS connections for the web server
   ufw: rule=allow port=443
 
-- name: Server | Enable firewall
-  ufw: state=enabled
+- name: Server | ufw | Reload firewall
+  ufw: state=reloaded
 

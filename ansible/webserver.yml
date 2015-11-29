@@ -1,4 +1,5 @@
 # vi: set sw=2 ts=2:
+# Setup and harden server
 ---
 
 - hosts: all
@@ -6,7 +7,9 @@
   vars_files:
     - [ "vars/secrets.yml", "vars/all.yml" ]
   roles:
+    - fretscha.first-five-minutes
     - server
+    - korzeniewskipl.pillow-prerequisites
     - nginx
     - pgsql
     - uwsgi

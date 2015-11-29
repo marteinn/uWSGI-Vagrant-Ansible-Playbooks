@@ -11,7 +11,6 @@ Performs basic server configurations and installs required packages
 Creates a boilerplate web applications, along with database and Nginx/uWSGI configuration.
 
 
-
 ## Included packages
 
 - Nginx
@@ -19,9 +18,16 @@ Creates a boilerplate web applications, along with database and Nginx/uWSGI conf
 - Postgres (with optional PostGIS extension)
 - Redis
 
+## Dependencies
+
+- (First Five Minutes)[https://github.com/fretscha-ansible/ansible-role-first-five-minutes]
+- (pillow-prerequisites)[https://github.com/korzeniewskipl/pillow-prerequisites]
+
+Just run `ansible-galaxy install -r requirements.yml`
+
 ## Requirements
 
-- Ansible 
+- Ansible
 - Mac or Linux
 - (Optionally) Vagrant
 

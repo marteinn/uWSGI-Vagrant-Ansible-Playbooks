@@ -1,25 +1,42 @@
----
 # vi: set sw=2 ts=2:
+---
 
 deploy_user: deploy
+deploy_group: deploy
+
 app_name: default_app
 app_domain: default_app.dev
 app_dev: '1'
 
+# Webapp
 base_dir: '/home/{{ deploy_user }}'
 app_dir: '{{ base_dir }}/{{ app_name }}'
 web_dir: '{{ base_dir }}/{{ app_name }}/web'
 logs_dir: '{{ base_dir }}/{{ app_name }}/logs'
 venv_dir: '{{ base_dir }}/{{ app_name }}/venv'
 
-server:
-  timezone: UTC
-  locale: en_US.UTF-8
-  packages: [vim, git]
-
+# Postgres
 pgsql:
   postgis: 'true'
   database: '{{ app_name }}_db'
   user: user
   password: password
 
+# Settings for fretscha.first-five-minutes
+# Read more: https://github.com/fretscha-ansible/ansible-role-first-five-minutes
+ffm_common_packages:
+    - curl
+    - wget
+    - vim
+    - git
+ffm_upgrade: safe
+ffm_root_password: password
+
+ffm_deploy_user: deploy_user
+ffm_deploy_group: deploy_group
+
+ffm_deploy_password: password
+
+ffm_fqdn_hostname: example.com
+ffm_logwatch_email: email@example.com
+ffm_notify_login_email: email@example.com
