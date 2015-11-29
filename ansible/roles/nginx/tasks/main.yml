@@ -1,5 +1,6 @@
----
 # vi: set sw=2 ts=2:
+# Install nginx
+---
 
 - name: Install Nginx
   sudo: yes

@@ -1,8 +1,8 @@
----
 # vi: set sw=2 ts=2:
 # Installs and configures Redis
+---
 
 - name: Ensure redis package is installed
-  apt: name=redis-server state=present update_cache=yes
   sudo: yes
+  apt: name=redis-server state=present update_cache=yes
 

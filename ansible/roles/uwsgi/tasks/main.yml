@@ -1,10 +1,10 @@
----
 # vi: set sw=2 ts=2:
 # Uwsgi related tasks (install uwsgi, setup path for vessals and sockets)
+---
 
 - name: Install uwsgi with pip
-  pip: name=uwsgi
   sudo: yes
+  pip: name=uwsgi
 
 - name: Assures uwsgi sites dir exists
   file: path=/etc/uwsgi/sites state=directory

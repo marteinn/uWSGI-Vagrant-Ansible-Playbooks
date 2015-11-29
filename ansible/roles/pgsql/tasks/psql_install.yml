@@ -1,5 +1,5 @@
----
 # vi: set sw=2 ts=2:
+---
 
 - name: Add PostgreSQL Repository
   sudo: yes
@@ -21,6 +21,7 @@
     - postgresql-client-9.3
     - python-pygresql
     - python-psycopg2
+    - libpq-dev
 
 - name: Create databases
   sudo: yes
