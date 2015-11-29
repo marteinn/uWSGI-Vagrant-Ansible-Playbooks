@@ -1,5 +1,5 @@
----
 # vi: set sw=2 ts=2:
+---
 
 - hosts: all
   sudo: true

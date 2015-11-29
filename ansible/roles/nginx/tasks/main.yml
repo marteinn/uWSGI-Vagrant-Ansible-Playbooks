@@ -1,7 +1,8 @@
----
 # vi: set sw=2 ts=2:
+# Install nginx
+---
 
-- name: Install Nginx
+- name: Nginx | Install Nginx
   sudo: yes
   apt: pkg=nginx state=latest
 

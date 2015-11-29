@@ -1,11 +1,12 @@
----
 # vi: set sw=2 ts=2:
+# Perform initial server setup
+---
 
-- name: Update apt
+- name: Server | Update apt
   sudo: yes
   apt: update_cache=yes
 
-- name: Install System Packages
+- name: Server | Install System Packages
   sudo: yes
   apt: pkg={{ item }} state=latest
   with_items:
@@ -16,33 +17,33 @@
     - python-virtualenv
     - python-dev
 
-- name: Install Extra Packages
+- name: Server | Install Extra Packages
   sudo: yes
   apt: pkg={{ item }} state=latest
   with_items: server.packages
   when: server.packages is defined
 
-- name: Configure the timezone
+- name: Server | Configure the timezone
   sudo: yes
   template: src=timezone.tpl dest=/etc/timezone
 
-- name: More Configure the timezone
+- name: Server | More Configure the timezone
   sudo: yes
   file: src=/usr/share/zoneinfo/{{server.timezone}} dest=/etc/localtime state=link force=yes backup=yes
 
-- name: Set default system language pack
-  shell: locale-gen {{ server.locale }}
+- name: Server | Set default system language pack
   sudo: yes
+  shell: locale-gen {{ server.locale }}
 
-- name: enable SSH in firewall
+- name: Server | Enable SSH in firewall
   ufw: rule=allow port=22
 
-- name: enable HTTP connections for web server
+- name: Server | Enable HTTP connections for web server
   ufw: rule=allow port=80
 
-- name: enable HTTPS connections for web server
+- name: Server | Enable HTTPS connections for web server
   ufw: rule=allow port=443
 
-- name: enable firewall
+- name: Server | Enable firewall
   ufw: state=enabled
 

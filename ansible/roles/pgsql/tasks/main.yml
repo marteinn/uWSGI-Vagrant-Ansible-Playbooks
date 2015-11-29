@@ -1,5 +1,6 @@
----
 # vi: set sw=2 ts=2:
+# Install and setup postgres (with gis if supplied)
+---
 
 - include: psql_install.yml
   when: pgsql.postgis == 'false'
