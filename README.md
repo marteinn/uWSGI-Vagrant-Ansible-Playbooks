@@ -21,7 +21,7 @@ Creates a boilerplate web applications, along with database and Nginx/uWSGI conf
 ## Dependencies
 
 - [First Five Minutes](https://github.com/fretscha-ansible/ansible-role-first-five-minutes)
-- (pillow-prerequisites)[https://github.com/korzeniewskipl/pillow-prerequisites]
+- [pillow-prerequisites](https://github.com/korzeniewskipl/pillow-prerequisites)
 
 Just run `ansible-galaxy install -r requirements.yml`
 
