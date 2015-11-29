@@ -2,16 +2,16 @@
 # Uwsgi related tasks (install uwsgi, setup path for vessals and sockets)
 ---
 
-- name: uWSGI | Install uwsgi with pip
+- name: Install uwsgi with pip
   sudo: yes
   pip: name=uwsgi
 
-- name: uWSGI | Assures uwsgi sites dir exists
+- name: Assures uwsgi sites dir exists
   file: path=/etc/uwsgi/sites state=directory
 
-- name: uWSGI | Assures uwsgi socket dir exists
+- name: Assures uwsgi socket dir exists
   file: path=/var/uwsgi state=directory
         owner={{ deploy_user }} group=www-data
 
-- name: uWSGI | Create wusgi Upstart script
+- name: Create wusgi Upstart script
   template: src=uwsgi.conf.tpl dest=/etc/init/uwsgi.conf

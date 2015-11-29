@@ -2,7 +2,7 @@
 # Install nginx
 ---
 
-- name: Nginx | Install Nginx
+- name: Install Nginx
   sudo: yes
   apt: pkg=nginx state=latest
 

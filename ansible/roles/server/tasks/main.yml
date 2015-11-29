@@ -2,7 +2,7 @@
 # Perform additional server setup
 ---
 
-- name: Server | apt | Install additional python packages
+- name: apt | Install additional python packages
   sudo: yes
   apt: pkg={{ item }} state=latest
   with_items:
@@ -10,12 +10,12 @@
     - python-virtualenv
     - python-dev
 
-- name: Server | ufw | Enable HTTP connections for the web server
+- name: ufw | Enable HTTP connections for the web server
   ufw: rule=allow port=80
 
-- name: Server | ufw | Enable HTTPS connections for the web server
+- name: ufw | Enable HTTPS connections for the web server
   ufw: rule=allow port=443
 
-- name: Server | ufw | Reload firewall
+- name: ufw | Reload firewall
   ufw: state=reloaded
 

@@ -2,23 +2,23 @@
 # Installs and configures the PostgreSQL (with PostGIS) database
 ---
 
-- name: PostgreSQL+GIS | Add PostgreSQL Repository
+- name: Add PostgreSQL Repository
   apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ {{ ansible_distribution_release }}-pgdg main' state=present
 
-- name: PostgreSQL+GIS | Add Keys for PostgreSQL Repository
+- name: Add Keys for PostgreSQL Repository
   apt_key: url=http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc state=present
 
-- name: PostgreSQL+GIS | Update apt
+- name: Update apt
   sudo: yes
   apt: update_cache=yes
 
-- name: PostgreSQL+GIS | Install PostgreSQL
+- name: Install PostgreSQL
   apt: pkg=postgresql-9.3 state=present force=yes
 
-- name: PostgreSQL+GIS | Start postgresql server
+- name: Start postgresql server
   service: name=postgresql state=started enabled=yes
 
-- name: PostgreSQL+GIS | Install PostgreSQL Packages
+- name: Install PostgreSQL Gis with Packages
   sudo: yes
   apt: >
     pkg={{item}}
@@ -35,17 +35,17 @@
     - postgresql-client-common
     - libpq-dev
 
-- name: PostgreSQL+GIS | Ensure template_postgis database exists
+- name: Ensure template_postgis database exists
   sudo_user: postgres
   postgresql_db: name=template_postgis state=present
   register: createdb_template_postgis
 
-- name: PostgreSQL+GIS | Make template_postgis a template
+- name: Make template_postgis a template
   sudo_user: postgres
   command: psql -d template_postgis -c "UPDATE pg_database SET datistemplate=true WHERE datname='template_postgis';"
   when: createdb_template_postgis.changed
 
-- name: PostgreSQL+GIS | Enable postgis extension
+- name: Enable postgis extension
   sudo_user: postgres
   command: psql -d template_postgis -c "CREATE EXTENSION postgis;"
   when: createdb_template_postgis.changed
