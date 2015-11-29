@@ -25,9 +25,8 @@
     state=installed
     update-cache=yes
   with_items:
-    - python-pygresql
     - build-essential
-    - python-dev
+    - python-pygresql
     - python-setuptools
     - python-psycopg2
     - postgresql-contrib-9.3
