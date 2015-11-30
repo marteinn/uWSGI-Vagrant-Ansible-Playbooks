@@ -13,5 +13,5 @@
   file: path=/var/uwsgi state=directory
         owner={{ deploy_user }} group=www-data
 
-- name: Create wusgi Upstart script
+- name: Create uwsgi Upstart script
   template: src=uwsgi.conf.tpl dest=/etc/init/uwsgi.conf

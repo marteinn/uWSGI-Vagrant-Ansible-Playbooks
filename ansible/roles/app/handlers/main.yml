@@ -1,5 +1,5 @@
----
 # vi: set sw=2 ts=2:
+---
 
 - include: ../../nginx/handlers/main.yml
 - include: ../../uwsgi/handlers/main.yml
